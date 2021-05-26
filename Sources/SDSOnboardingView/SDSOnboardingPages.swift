@@ -61,6 +61,15 @@ public class SDSOnboardingPages: ObservableObject {
         let prevIndex = index > 0 ? index-1 : 0
         return introPages[prevIndex].id
     }
+    
+    public func needToShow() -> Bool {
+        if shownPageNames.count < introPages.count {
+            return true
+        }
+        return false
+    }
+    
+
 }
 
 extension DefaultsKeys {
