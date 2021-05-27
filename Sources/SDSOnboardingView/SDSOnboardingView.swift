@@ -35,9 +35,14 @@ public struct SDSOnboardingView: View {
             ZStack {
                 TabView(selection: $selectedPageID) {
                     ForEach(introPages.introPages) { viewInfo in
-                        viewInfo.content()
-                            .tabItem { Text(viewInfo.id) }
-                            .tag(viewInfo.id)
+                        ZStack {
+                            viewInfo.content()
+                            if viewInfo.new {
+                                Image("New", bundle: Bundle.module).resizable().scaledToFit()
+                            }
+                        }
+                        .tabItem { Text(viewInfo.id) }
+                        .tag(viewInfo.id)
                     }
                 }
                 HStack { // prev/next button
@@ -76,7 +81,7 @@ public struct SDSOnboardingView: View {
                 }
                 .padding(.trailing, 20)
             }
-            .padding(.bottom, 10)
+            .padding(.top, 8)
         }
         .onAppear {
             if introPages.introPages.count == 0 {
@@ -101,6 +106,9 @@ struct LocalTabView: View {
                     viewInfo.content()
                         .tabItem { Text(viewInfo.id) }
                         .tag(viewInfo.id)
+                    if viewInfo.new {
+                        Image("New").resizable().scaledToFit()
+                    }
                 }
             }
             #if os(macOS)

@@ -84,11 +84,13 @@ extension DefaultsKeys {
 public struct SDSOnboardingPage : Identifiable {
     public let id: String // page name, should be unique
     public let desc: String
+    public let new: Bool
     let content: () -> AnyView
     
-    public init(name: String, desc: String = "", @ViewBuilder content: @escaping () -> AnyView) {
+    public init(name: String, desc: String = "", new: Bool = false, @ViewBuilder content: @escaping () -> AnyView) {
         self.id = name
         self.desc = desc
+        self.new = new
         self.content = content
     }
 }

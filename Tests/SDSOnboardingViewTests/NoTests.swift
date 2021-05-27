@@ -1,4 +1,4 @@
-@testable import 
+@testable import SDSOnboardingView
 import XCTest
 
 final class Tests: XCTestCase {
