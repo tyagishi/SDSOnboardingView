@@ -71,15 +71,16 @@ public struct SDSOnboardingView: View {
                     // user can come back to same intro
                     present.toggle()
                 }
-                .padding(.leading, 30)
+                .padding(.leading, 8)
                 Spacer()
                 Text(introPages.descriptionFor(page: selectedPageID))
+                    .font(.title)
                 Spacer()
                 Button("close") {
                     present.toggle()
                     introPages.storeShownPageInfo()
                 }
-                .padding(.trailing, 20)
+                .padding(.trailing, 8)
             }
             .padding(.top, 8)
         }
