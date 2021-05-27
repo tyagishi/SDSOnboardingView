@@ -69,6 +69,11 @@ public class SDSOnboardingPages: ObservableObject {
         return false
     }
     
+    public func descriptionFor(page id: String) -> String {
+        guard let index = introPages.firstIndex(where: {$0.id == id}) else { return "" }
+        return introPages[index].desc
+    }
+    
 
 }
 
@@ -78,10 +83,12 @@ extension DefaultsKeys {
 
 public struct SDSOnboardingPage : Identifiable {
     public let id: String // page name, should be unique
+    public let desc: String
     let content: () -> AnyView
     
-    public init(name: String, @ViewBuilder content: @escaping () -> AnyView) {
+    public init(name: String, desc: String = "", @ViewBuilder content: @escaping () -> AnyView) {
         self.id = name
+        self.desc = desc
         self.content = content
     }
 }
